@@ -1,40 +1,41 @@
-//BaekJoon #15649 by yoonseul at 210724
+# include <stdio.h>
 
-#include <stdio.h>
-#include <stdbool.h>
+void series(int arr[], int x, int y, int depth)
+{
+	for (int i = 1; i < x + 1; i++) {
+		int n = 0;
+		
+		if (depth == 0)
+			arr[0] = i;
+		else {
+			for (n = 0; n < depth; n++) {
+				if (arr[n] == i)
+					break;
+			}
+			if (n == depth)
+				arr[depth] = i;
+			else {
+				continue;
+			}
+		}
 
-void series(int x, int y);
-int result[8];
+		if (y - 1 == depth) {
+			for (int i = 0; i < y; i++) {
+				printf("%d ", arr[i]);
+			}
+			printf("\n");
+		}
+		else {
+			series(arr, x, y, depth + 1);
+		}
+	}
+}
 
 int main(void)
 {
 	int n, m;
-
+	int result[8] = { 0 };
 	scanf("%d %d", &n, &m);
 
-	series(n, m,0);
-}
-
-void series(int x, int y, int depth)
-{
-
-	if (depth == 0) {
-		for (int i = 0; i < x; i++) {
-			result[depth] = i + 1;
-			series(x, y - 1, depth + 1);
-		}
-	}
-	else {
-		for (int i = 0; i < x; i++) {
-			if (result[depth - 1] == i + 1)
-				continue;
-			else {
-				result[depth] = i + 1;
-			}
-		}
-		series(x, y - 1, depth + 1);
-	}
-	if (y == depth)
-		exit(1);
-	
+	series(result, n, m, 0);
 }
