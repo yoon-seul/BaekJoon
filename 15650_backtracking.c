@@ -2,7 +2,10 @@
 
 #include <stdio.h>
 
-void series(int* arr[], int x, int y, int depth)
+int n, m;
+int result[8] = { 0 };
+
+void series(int arr[], int x, int y, int depth)
 {
 	for (int i = 0; i < x; i++) {
 		int j;
@@ -19,21 +22,19 @@ void series(int* arr[], int x, int y, int depth)
 		if (y == depth) {
 			for (int k = 0; k < y; k++) {
 				printf("%d ", arr[k]);
-				printf("\n");
 			}
-
+			printf("\n");
 			return 0;
 		}
-		series(&arr, x, y, depth + 1);
+		series(arr, x, y, depth + 1);
 	}
 }
 
 int main(void)
 {
-	int n, m;
-	int result[8] = { 0 };
+	
 
 	scanf("%d %d", &n, &m);
 
-	series(&result, n, m, 0);
+	series(result, n, m, 0);
 }
