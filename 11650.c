@@ -22,8 +22,15 @@ int main(void)
 
 	for (int i = 0; i < num; i++) {
 		for (int j = 0; j < num; j++) {
-			if (xy[i].x > xy[j].x) {
+			if (xy[i].x < xy[j].x) {
 				swap(&xy[i].x, &xy[j].x);
+				swap(&xy[i].y, &xy[j].y);
+			}
+			if (xy[i].x == xy[j].x) {
+				if (xy[i].y < xy[j].y) {
+					swap(&xy[i].x, &xy[j].x);
+					swap(&xy[i].y, &xy[j].y);
+				}
 			}
 		}
 	}
