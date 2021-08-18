@@ -19,11 +19,11 @@ int main(void)
 	scanf("%d", &num);
 
 	for (int i = 0; i < num; i++) {
-		scanf("%d %d", person[i].weight, person[i].height);
+		scanf("%d %d", &person[i].weight, &person[i].height);
 	}
 
 	for (int i = 0; i < num; i++) {
-		int count = 0;
+		int count = 1;
 		for (int j = 0; j < num; j++) {
 			if (person[i].weight < person[j].weight)
 				count++;
@@ -31,7 +31,7 @@ int main(void)
 		person[i].seriesW = count;
 	}
 	for (int i = 0; i < num; i++) {
-		int count = 0;
+		int count = 1;
 		for (int j = 0; j < num; j++) {
 			if (person[i].height < person[j].height)
 				count++;
@@ -44,9 +44,8 @@ int main(void)
 			person[i].series = person[i].seriesW;
 		if (person[i].seriesW > person[i].seriesH)
 			person[i].series = person[i].seriesH;
-		else {
+		if (person[i].seriesW < person[i].seriesH)
 			person[i].series = person[i].seriesW;
-		}
 	}
 
 	for (int i = 0; i < num; i++) {
