@@ -5,10 +5,10 @@
 typedef struct howLarge {
 	int weight;
 	int height;
-	int seriesW;
-	int seriesH;
 	int series;
 }HL;
+
+int compare(int w, int x, int y, int z);
 
 int main(void)
 {
@@ -25,30 +25,26 @@ int main(void)
 	for (int i = 0; i < num; i++) {
 		int count = 1;
 		for (int j = 0; j < num; j++) {
-			if (person[i].weight < person[j].weight)
+			int result = compare(person[i].weight, person[j].weight, person[i].height, person[j].height);
+			if (result == -1)
 				count++;
 		}
-		person[i].seriesW = count;
-	}
-	for (int i = 0; i < num; i++) {
-		int count = 1;
-		for (int j = 0; j < num; j++) {
-			if (person[i].height < person[j].height)
-				count++;
-		}
-		person[i].seriesH = count;
+		person[i].series = count;
 	}
 
-	for (int i = 0; i < num; i++) {
-		if (person[i].seriesW == person[i].seriesH)
-			person[i].series = person[i].seriesW;
-		if (person[i].seriesW > person[i].seriesH)
-			person[i].series = person[i].seriesH;
-		if (person[i].seriesW < person[i].seriesH)
-			person[i].series = person[i].seriesW;
-	}
 
 	for (int i = 0; i < num; i++) {
 		printf("%d ", person[i].series);
+	}
+}
+
+int compare(int w, int x,int y, int z)
+{
+	if (w > x && y > z)
+		return 1;
+	if (w < x && y < z)
+		return -1;
+	else {
+		return 0;
 	}
 }
