@@ -40,6 +40,16 @@ int main(void)
 	}
 
 	for (int i = 0; i < num; i++) {
-		if
+		if (person[i].seriesW == person[i].seriesH)
+			person[i].series = person[i].seriesW;
+		if (person[i].seriesW > person[i].seriesH)
+			person[i].series = person[i].seriesH;
+		else {
+			person[i].series = person[i].seriesW;
+		}
+	}
+
+	for (int i = 0; i < num; i++) {
+		printf("%d ", person[i].series);
 	}
 }
